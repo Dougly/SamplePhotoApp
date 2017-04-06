@@ -16,6 +16,8 @@ class Photo {
     let title: String
     let albumID: Int
     let photoID: Int
+    var thumbnail: UIImage?
+    var image: UIImage?
     
     init(with JSON: [String : Any]) {
         self.thumbnailURLString = JSON["url"] as! String

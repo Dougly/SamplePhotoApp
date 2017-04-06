@@ -14,16 +14,14 @@ class DataStore {
     static let sharedInstance = DataStore.init()
     private init() {}
     
-    let urlForSampleJSONAsString = "http://jsonplaceholder.typicode.com/photos"
+    let sampleURL = "http://jsonplaceholder.typicode.com/photos"
     var serializedJSON: [[String : Any]] = []
     var photos: [Photo] = []
     
-    func getJSON(from urlAsString: String, completion: @escaping () -> Void) {
-        
+    func getJSON(with completion: @escaping () -> Void) {
         // calls and saves JSON data
         if serializedJSON.isEmpty {
-            print("json is empty so we populate")
-            APIClient.parseJSON(fromURLAs: urlAsString) { (JSON) in
+            APIClient.getPhotoInfo(fromURL: sampleURL) { (JSON) in
                 self.serializedJSON = JSON
                 completion()
             }
@@ -31,7 +29,7 @@ class DataStore {
     }
     
     // Initializes 500 photos at a time depending on collection view scrolling
-    func populateNext500Photos() {
+    func appendNext500Photos(with completion: () -> Void) {
         if photos.count == 0 {
             initializePhotos(formStartingIndex: photos.count, toEndingIndex: photos.count + 500)
         } else if photos.count + 500 < serializedJSON.count {
@@ -43,12 +41,12 @@ class DataStore {
         if let lastPhoto = self.photos.last {
             print("🔥Last Photo \(lastPhoto.title)")
         }
+        
+        completion()
     }
     
     func initializePhotos(formStartingIndex starting: Int, toEndingIndex ending: Int) {
         for i in starting...ending {
-            print(i)
-            print(serializedJSON[i])
             let photoInfo = serializedJSON[i]
             let photo = Photo(with: photoInfo)
             photos.append(photo)

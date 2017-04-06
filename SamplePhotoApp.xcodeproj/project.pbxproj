@@ -17,6 +17,8 @@
 		11C1F8831E96B32100E10043 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1F8821E96B32100E10043 /* Photo.swift */; };
 		11C1F8851E96BB5100E10043 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1F8841E96BB5100E10043 /* DataStore.swift */; };
 		11C1F8871E96C4CB00E10043 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11C1F8861E96C4CB00E10043 /* Default-568h@2x.png */; };
+		11C1F88D1E96DAC100E10043 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1F88C1E96DAC100E10043 /* ImageCollectionViewCell.swift */; };
+		11C1F88F1E96E01B00E10043 /* ImageDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1F88E1E96E01B00E10043 /* ImageDownloadOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		11C1F8821E96B32100E10043 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		11C1F8841E96BB5100E10043 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		11C1F8861E96C4CB00E10043 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		11C1F88C1E96DAC100E10043 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		11C1F88E1E96E01B00E10043 /* ImageDownloadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				11C1F8801E96B2EF00E10043 /* APIClient.swift */,
+				11C1F88E1E96E01B00E10043 /* ImageDownloadOperation.swift */,
 				11C1F8821E96B32100E10043 /* Photo.swift */,
 				11C1F8841E96BB5100E10043 /* DataStore.swift */,
 			);
@@ -119,6 +124,7 @@
 			children = (
 				11C1F8611E96AF8D00E10043 /* Main.storyboard */,
 				11C1F8661E96AF8D00E10043 /* LaunchScreen.storyboard */,
+				11C1F88C1E96DAC100E10043 /* ImageCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -238,10 +244,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11C1F88D1E96DAC100E10043 /* ImageCollectionViewCell.swift in Sources */,
 				11C1F8831E96B32100E10043 /* Photo.swift in Sources */,
 				11C1F8601E96AF8D00E10043 /* ViewController.swift in Sources */,
 				11C1F85E1E96AF8D00E10043 /* AppDelegate.swift in Sources */,
 				11C1F8851E96BB5100E10043 /* DataStore.swift in Sources */,
+				11C1F88F1E96E01B00E10043 /* ImageDownloadOperation.swift in Sources */,
 				11C1F8811E96B2EF00E10043 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
