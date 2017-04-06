@@ -10,10 +10,10 @@ import Foundation
 
 class APIClient {
     
-    class func parseJSON(from urlAsString: String, completion: @escaping ([[String : Any]]) -> Void) {
+    class func parseJSON(fromURLAs string: String, completion: @escaping ([[String : Any]]) -> Void) {
         
         // Convert string to URL and create shared session
-        let url = URL(string: urlAsString)
+        let url = URL(string: string)
         let session = URLSession.shared
         
         // If url is valid attemt to parse obtain JSON and parse it
@@ -37,7 +37,5 @@ class APIClient {
             })
             task.resume()
         }
-        
     }
-    
 }

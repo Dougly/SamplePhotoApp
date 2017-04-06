@@ -14,13 +14,13 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataStore.getPhotos(from: dataStore.urlForSampleJSONAsString)
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        // get serializedJSON and first 500 photos
+        dataStore.getJSON(from: dataStore.urlForSampleJSONAsString) {
+            print(self.dataStore.serializedJSON.count)
+            self.dataStore.populateNext500Photos()
+        }
+        
     }
 
 

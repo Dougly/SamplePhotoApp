@@ -15,17 +15,43 @@ class DataStore {
     private init() {}
     
     let urlForSampleJSONAsString = "http://jsonplaceholder.typicode.com/photos"
+    var serializedJSON: [[String : Any]] = []
     var photos: [Photo] = []
     
-    func getPhotos(from urlAsString: String) {
-        APIClient.parseJSON(from: urlAsString) { (JSON) in
-            for item in JSON {
-                let photo = Photo(with: item)
-                self.photos.append(photo)
+    func getJSON(from urlAsString: String, completion: @escaping () -> Void) {
+        
+        // calls and saves JSON data
+        if serializedJSON.isEmpty {
+            print("json is empty so we populate")
+            APIClient.parseJSON(fromURLAs: urlAsString) { (JSON) in
+                self.serializedJSON = JSON
+                completion()
             }
-            if let firstPhoto = self.photos.first {
-                print("🔥First Photo \(firstPhoto.title)")
-            }
+        }
+    }
+    
+    // Initializes 500 photos at a time depending on collection view scrolling
+    func populateNext500Photos() {
+        if photos.count == 0 {
+            initializePhotos(formStartingIndex: photos.count, toEndingIndex: photos.count + 500)
+        } else if photos.count + 500 < serializedJSON.count {
+            initializePhotos(formStartingIndex: photos.count + 1, toEndingIndex: photos.count + 500)
+        } else if photos.count < serializedJSON.count {
+            initializePhotos(formStartingIndex: photos.count + 1, toEndingIndex: serializedJSON.count - 1)
+        }
+        
+        if let lastPhoto = self.photos.last {
+            print("🔥Last Photo \(lastPhoto.title)")
+        }
+    }
+    
+    func initializePhotos(formStartingIndex starting: Int, toEndingIndex ending: Int) {
+        for i in starting...ending {
+            print(i)
+            print(serializedJSON[i])
+            let photoInfo = serializedJSON[i]
+            let photo = Photo(with: photoInfo)
+            photos.append(photo)
         }
     }
 }
