@@ -9,9 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let dataStore = DataStore.sharedInstance
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataStore.getPhotos(from: dataStore.urlForSampleJSONAsString)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
