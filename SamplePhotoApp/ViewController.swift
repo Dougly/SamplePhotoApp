@@ -57,8 +57,19 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageCollectionViewCell
-        cell.imageView.image = #imageLiteral(resourceName: "sampleThumbnail")
-        cell.contentView.backgroundColor = .black
+        
+        let photo = dataStore.photos[indexPath.row]
+        if let thumbnail = photo.thumbnail {
+            cell.activityIndicatorView.stopAnimating()
+            cell.imageView.image = thumbnail
+        } else {
+            photo.downloadThumbnail {
+                DispatchQueue.main.async {
+                    cell.activityIndicatorView.stopAnimating()
+                    cell.imageView.image = photo.thumbnail
+                }
+            }
+        }
         return cell
     }
     

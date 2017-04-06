@@ -10,7 +10,8 @@ import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
     
-    var imageView: UIImageView = UIImageView()
+    var imageView = UIImageView()
+    let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,11 +25,21 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     func commonInit() {
         self.contentView.addSubview(imageView)
+        self.contentView.addSubview(activityIndicatorView)
+        
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        
         imageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1).isActive = true
         imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1).isActive = true
         imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        
+        activityIndicatorView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        activityIndicatorView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        
+        activityIndicatorView.startAnimating()
+        activityIndicatorView.hidesWhenStopped = true
     }
     
 }
