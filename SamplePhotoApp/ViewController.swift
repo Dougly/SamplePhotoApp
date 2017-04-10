@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     let dataStore = DataStore.sharedInstance
+    var selectedIndexPath: IndexPath? = nil
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -43,15 +44,13 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("calling number of items in section: \(dataStore.photos.count)")
-
         return dataStore.photos.count
     }
     
@@ -59,19 +58,73 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageCollectionViewCell
         
         let photo = dataStore.photos[indexPath.row]
-        if let thumbnail = photo.thumbnail {
-            cell.activityIndicatorView.stopAnimating()
-            cell.imageView.image = thumbnail
+        
+        
+        if selectedIndexPath == indexPath {
+            
+            if let largeImage = photo.largeImage {
+                cell.imageView.image = largeImage
+            } else {
+                photo.downloadlargeImage {
+                    DispatchQueue.main.async {
+                        cell.imageView.image = photo.largeImage
+                    }
+                }
+            }
+            
         } else {
-            photo.downloadThumbnail {
-                DispatchQueue.main.async {
-                    cell.activityIndicatorView.stopAnimating()
-                    cell.imageView.image = photo.thumbnail
+            
+            if let thumbnail = photo.thumbnail {
+                cell.activityIndicatorView.stopAnimating()
+                cell.imageView.image = thumbnail
+            } else {
+                photo.downloadThumbnail {
+                    DispatchQueue.main.async {
+                        cell.activityIndicatorView.stopAnimating()
+                        cell.imageView.image = photo.thumbnail
+                    }
                 }
             }
         }
+        
+       
         return cell
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if selectedIndexPath != nil {
+            selectedIndexPath = nil
+            collectionView.performBatchUpdates({
+                self.collectionView.setCollectionViewLayout(collectionView.collectionViewLayout, animated: true, completion: nil)
+            }, completion: { success in
+                collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
+            })
+        } else {
+            selectedIndexPath = indexPath
+            collectionView.performBatchUpdates({
+                self.collectionView.setCollectionViewLayout(collectionView.collectionViewLayout, animated: true, completion: nil)
+            }, completion: { (success) in
+                collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
+            })
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if selectedIndexPath == indexPath {
+            return collectionView.frame.size
+        } else {
+            return CGSize(width: 100, height: 100)
+        }
+    }
+    
+    //let cellContentView = collectionView.cellForItemAtIndexPath(indexPath)?.contentView
+    //let rect = cellContentView!.convertRect(cellContentView!.frame, toView: self.view)
+    //addView.center = CGPointMake(rect.origin.x + rect.size.width / 2, rect.origin.y + rect.size.height / 2)
+    
+    
 }
+
+
+
 

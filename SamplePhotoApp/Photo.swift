@@ -20,8 +20,8 @@ class Photo {
     var largeImage: UIImage?
     
     init(with dict: [String : Any]) {
-        self.thumbnailURLString = dict["url"] as! String
-        self.imageURLString = dict["thumbnailUrl"] as! String
+        self.thumbnailURLString = dict["thumbnailUrl"] as! String
+        self.imageURLString = dict["url"] as! String
         self.title = dict["title"] as! String
         self.albumID = dict["albumId"] as! Int
         self.photoID = dict["id"] as! Int

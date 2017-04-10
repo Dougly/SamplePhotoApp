@@ -30,8 +30,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         
-        imageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1).isActive = true
         imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1).isActive = true
+        imageView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1).isActive = true
         imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         

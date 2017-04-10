@@ -19,6 +19,8 @@
 		11C1F8871E96C4CB00E10043 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11C1F8861E96C4CB00E10043 /* Default-568h@2x.png */; };
 		11C1F88D1E96DAC100E10043 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1F88C1E96DAC100E10043 /* ImageCollectionViewCell.swift */; };
 		11C1F88F1E96E01B00E10043 /* ImageDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1F88E1E96E01B00E10043 /* ImageDownloadOperation.swift */; };
+		11C1F8911E99B6A000E10043 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1F8901E99B6A000E10043 /* DetailView.swift */; };
+		11C1F8931E99B8C400E10043 /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11C1F8921E99B8C400E10043 /* DetailView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		11C1F8861E96C4CB00E10043 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		11C1F88C1E96DAC100E10043 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		11C1F88E1E96E01B00E10043 /* ImageDownloadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadOperation.swift; sourceTree = "<group>"; };
+		11C1F8901E99B6A000E10043 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		11C1F8921E99B8C400E10043 /* DetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,8 @@
 				11C1F8611E96AF8D00E10043 /* Main.storyboard */,
 				11C1F8661E96AF8D00E10043 /* LaunchScreen.storyboard */,
 				11C1F88C1E96DAC100E10043 /* ImageCollectionViewCell.swift */,
+				11C1F8901E99B6A000E10043 /* DetailView.swift */,
+				11C1F8921E99B8C400E10043 /* DetailView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -227,6 +233,7 @@
 				11C1F8871E96C4CB00E10043 /* Default-568h@2x.png in Resources */,
 				11C1F8651E96AF8D00E10043 /* Assets.xcassets in Resources */,
 				11C1F8631E96AF8D00E10043 /* Main.storyboard in Resources */,
+				11C1F8931E99B8C400E10043 /* DetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11C1F88D1E96DAC100E10043 /* ImageCollectionViewCell.swift in Sources */,
+				11C1F8911E99B6A000E10043 /* DetailView.swift in Sources */,
 				11C1F8831E96B32100E10043 /* Photo.swift in Sources */,
 				11C1F8601E96AF8D00E10043 /* ViewController.swift in Sources */,
 				11C1F85E1E96AF8D00E10043 /* AppDelegate.swift in Sources */,
