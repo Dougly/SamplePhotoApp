@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     var numberOfCellsPerRow: CGFloat = 3
     var selectedPhotoIndex = -1
     var hitBottomOfScrollView = false
-    private let refreshControl = UIRefreshControl()
+    fileprivate let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -29,8 +29,6 @@ class ViewController: UIViewController {
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(getPhotoData), for: .valueChanged)
     }
-    
-    
     
     func getPhotoData() {
         dataStore.getJSON { success in
@@ -45,17 +43,35 @@ class ViewController: UIViewController {
                 }
             } else {
                 if self.dataStore.photos.isEmpty {
-                    
+                    // TODO: - put image error up
                 }
                 self.activityIndicatorView.stopAnimating()
                 self.refreshControl.endRefreshing()
             }
         }
     }
-    
-
 
 }
+
+
+
+
+extension ViewController: GetPhotoDataDelegate {
+    
+    
+    func getNextBatch(with completion: @escaping (Bool) -> Void) {
+        dataStore.appendNext30Photos {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.hitBottomOfScrollView = false
+                completion(true)
+            }
+        }
+    }
+}
+
+
+
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -113,11 +129,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         if segue.identifier == "presentDetailView" {
             let destination = segue.destination as! DetailViewController
             destination.photoIndex = selectedPhotoIndex
+            destination.delegate = self
         }
     }
-    
-    
 }
+
+
+
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     

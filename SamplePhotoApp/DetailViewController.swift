@@ -11,21 +11,17 @@ import UIKit
 class DetailViewController: UIViewController {
     
     let dataStore = DataStore.sharedInstance
-    var photoIndex: Int?
-    
+    var delegate: GetPhotoDataDelegate!
+    var photoIndex: Int!
     @IBOutlet var detailView: DetailView!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let photoIndex = photoIndex {
-            setImage(with: photoIndex)
-        } else {
-            detailView.imageView.image = #imageLiteral(resourceName: "broken_image")
-            detailView.detailLabel.text = "image unavailable"
-        }
+        setImage(with: photoIndex)
         setGestureRecognizers()
     }
+    
     
     func setImage(with index: Int) {
         let photo = dataStore.photos[index]
@@ -33,6 +29,7 @@ class DetailViewController: UIViewController {
         detailView.detailLabel.text = photo.title
         getImage(with: photo)
     }
+    
     
     func getImage(with photo: Photo) {
         if photo.largeImage == nil {
@@ -46,24 +43,31 @@ class DetailViewController: UIViewController {
             detailView.imageView.image = photo.largeImage
             detailView.activityIndicator.stopAnimating()
         }
-        
     }
+    
     
     func xButtonTapped() {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
     func changeImage(_ sender: UISwipeGestureRecognizer) {
-        guard let photoIndex = photoIndex else { return }
         if sender.direction == .right && photoIndex > 0 {
             self.photoIndex! -= 1
             setImage(with: self.photoIndex!)
-            
-        } else if sender.direction == .left && photoIndex < dataStore.serializedJSON.count {
+        } else if sender.direction == .left && photoIndex < dataStore.photos.count - 1 {
             self.photoIndex! += 1
             setImage(with: self.photoIndex!)
+        } else if sender.direction == .left && photoIndex < dataStore.serializedJSON.count - 1 {
+            delegate.getNextBatch { success in
+                if success {
+                    self.photoIndex! += 1
+                    self.setImage(with: self.photoIndex!)
+                }
+            }
         }
     }
+    
     
     func hideLabelAndX() {
         if detailView.xButton.alpha == 1 {
@@ -81,6 +85,7 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    
     
     func setGestureRecognizers() {
         detailView.xButton.addTarget(self, action: #selector(xButtonTapped), for: .touchUpInside)
