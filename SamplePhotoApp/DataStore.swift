@@ -20,15 +20,13 @@ class DataStore {
     
     func getJSON(with completion: @escaping (Bool) -> Void) {
         // calls and saves JSON data
-        if serializedJSON.isEmpty {
-            APIClient.getPhotoInfo(fromURL: sampleURL) { (JSON) in
-                if JSON.count == 0 {
-                    print("no internet connection")
-                    completion(false)
-                } else {
-                    self.serializedJSON = JSON
-                    completion(true)
-                }
+        APIClient.getPhotoInfo(fromURL: sampleURL) { (JSON) in
+            if JSON.count == 0 {
+                print("no internet connection")
+                completion(false)
+            } else {
+                self.serializedJSON = JSON
+                completion(true)
             }
         }
     }
@@ -42,11 +40,6 @@ class DataStore {
         } else if photos.count < serializedJSON.count {
             initializePhotos(formStartingIndex: photos.count + 1, toEndingIndex: serializedJSON.count - 1)
         }
-        
-        if let lastPhoto = self.photos.last {
-            print("🔥Last Photo \(lastPhoto.title)")
-        }
-        
         completion()
     }
     

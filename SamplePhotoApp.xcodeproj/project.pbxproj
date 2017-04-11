@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1151047C1E9D40F9007C001B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151047B1E9D40F9007C001B /* DetailViewController.swift */; };
 		11C1F85E1E96AF8D00E10043 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1F85D1E96AF8D00E10043 /* AppDelegate.swift */; };
 		11C1F8601E96AF8D00E10043 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1F85F1E96AF8D00E10043 /* ViewController.swift */; };
 		11C1F8631E96AF8D00E10043 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11C1F8611E96AF8D00E10043 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1151047B1E9D40F9007C001B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		11C1F85A1E96AF8D00E10043 /* SamplePhotoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SamplePhotoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11C1F85D1E96AF8D00E10043 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11C1F85F1E96AF8D00E10043 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				11C1F85D1E96AF8D00E10043 /* AppDelegate.swift */,
 				11C1F85F1E96AF8D00E10043 /* ViewController.swift */,
+				1151047B1E9D40F9007C001B /* DetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1151047C1E9D40F9007C001B /* DetailViewController.swift in Sources */,
 				11C1F88D1E96DAC100E10043 /* ImageCollectionViewCell.swift in Sources */,
 				11C1F8911E99B6A000E10043 /* DetailView.swift in Sources */,
 				11C1F8831E96B32100E10043 /* Photo.swift in Sources */,

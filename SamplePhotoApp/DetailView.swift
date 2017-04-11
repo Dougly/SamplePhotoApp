@@ -13,6 +13,8 @@ class DetailView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var xButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var detailLabel: UILabel!
     
     
     override init(frame: CGRect) {
@@ -28,6 +30,9 @@ class DetailView: UIView {
     func commonInit() {
         Bundle.main.loadNibNamed("DetailView", owner: self, options: nil)
         self.addSubview(contentView)
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         contentView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -35,7 +40,6 @@ class DetailView: UIView {
         contentView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
 
     }
-    
-    
+
     
 }

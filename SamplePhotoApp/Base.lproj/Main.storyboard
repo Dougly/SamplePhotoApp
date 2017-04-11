@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -69,7 +70,7 @@
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="QJM-UO-ByT" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="Bzy-EQ-Mju"/>
                             <constraint firstItem="6rg-6e-s0X" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Fnh-Wz-uMu"/>
@@ -89,10 +90,44 @@
                         <outlet property="activityIndicatorView" destination="6rg-6e-s0X" id="WvY-iX-kBf"/>
                         <outlet property="collectionView" destination="yrc-Gf-DCr" id="L7v-ck-X9P"/>
                         <outlet property="headerView" destination="QJM-UO-ByT" id="AmT-G4-LKZ"/>
+                        <segue destination="TSd-tM-z3c" kind="presentation" identifier="presentDetailView" id="Ygw-qW-eP0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="gOr-IA-kCt">
+            <objects>
+                <viewController id="TSd-tM-z3c" customClass="DetailViewController" customModule="SamplePhotoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0ue-b5-phc"/>
+                        <viewControllerLayoutGuide type="bottom" id="Buk-0X-Qgt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PvK-T2-TYJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLu-tm-lsJ" customClass="DetailView" customModule="SamplePhotoApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="383" height="647"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="CLu-tm-lsJ" firstAttribute="top" secondItem="0ue-b5-phc" secondAttribute="bottom" id="Asw-fe-wKB"/>
+                            <constraint firstItem="CLu-tm-lsJ" firstAttribute="rightMargin" secondItem="PvK-T2-TYJ" secondAttribute="right" id="Bs7-gB-Pai"/>
+                            <constraint firstItem="Buk-0X-Qgt" firstAttribute="top" secondItem="CLu-tm-lsJ" secondAttribute="bottom" id="evA-O5-zdz"/>
+                            <constraint firstItem="CLu-tm-lsJ" firstAttribute="leading" secondItem="PvK-T2-TYJ" secondAttribute="leading" id="i32-At-Fkn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailView" destination="CLu-tm-lsJ" id="Rs1-3u-dKa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gCC-oR-wFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="980" y="122"/>
         </scene>
     </scenes>
 </document>
