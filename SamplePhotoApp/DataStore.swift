@@ -11,19 +11,24 @@ import Foundation
 class DataStore {
     
     // set the data store as a singleton
-    static let sharedInstance = DataStore.init()
+    static let sharedInstance = DataStore()
     private init() {}
     
     let sampleURL = "http://jsonplaceholder.typicode.com/photos"
     var serializedJSON: [[String : Any]] = []
     var photos: [Photo] = []
     
-    func getJSON(with completion: @escaping () -> Void) {
+    func getJSON(with completion: @escaping (Bool) -> Void) {
         // calls and saves JSON data
         if serializedJSON.isEmpty {
             APIClient.getPhotoInfo(fromURL: sampleURL) { (JSON) in
-                self.serializedJSON = JSON
-                completion()
+                if JSON.count == 0 {
+                    print("no internet connection")
+                    completion(false)
+                } else {
+                    self.serializedJSON = JSON
+                    completion(true)
+                }
             }
         }
     }

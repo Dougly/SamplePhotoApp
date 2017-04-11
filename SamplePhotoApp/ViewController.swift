@@ -12,39 +12,39 @@ class ViewController: UIViewController {
     let dataStore = DataStore.sharedInstance
     var selectedIndexPath: IndexPath? = nil
     
+    let screenWidth = UIScreen.main.bounds.width
+    var spacing: CGFloat!
+    var sectionInsets: UIEdgeInsets!
+    var size: CGSize!
+    var numberOfCellsPerRow: CGFloat = 3
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var headerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataStore.getJSON() {
-            self.dataStore.appendNext500Photos {
-                DispatchQueue.main.async {
-                    self.activityIndicatorView.stopAnimating()
-                    self.collectionView.reloadData()
+        configureLayout()
+        dataStore.getJSON() { success in
+            if success {
+                self.dataStore.appendNext500Photos {
+                    DispatchQueue.main.async {
+                        self.activityIndicatorView.stopAnimating()
+                        self.collectionView.reloadData()
+                    }
                 }
+            } else {
+                self.activityIndicatorView.stopAnimating()
+                // TODO: -show error image
             }
-            
         }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        // Get serializedJason for first 500 photos
-        
-        
-        
-
-    }
-    
-    
-    
     
 
 
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -59,34 +59,35 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         let photo = dataStore.photos[indexPath.row]
         
-        
-        if selectedIndexPath == indexPath {
+        if let selectedIndexPath = selectedIndexPath {
             
-            if let largeImage = photo.largeImage {
-                cell.imageView.image = largeImage
-            } else {
-                photo.downloadlargeImage {
-                    DispatchQueue.main.async {
-                        cell.imageView.image = photo.largeImage
+            if selectedIndexPath == indexPath {
+                
+                if let largeImage = photo.largeImage {
+                    cell.imageView.image = largeImage
+                } else {
+                    photo.downloadlargeImage {
+                        DispatchQueue.main.async {
+                            cell.imageView.image = photo.largeImage
+                        }
                     }
                 }
-            }
-            
-        } else {
-            
-            if let thumbnail = photo.thumbnail {
-                cell.activityIndicatorView.stopAnimating()
-                cell.imageView.image = thumbnail
+                
             } else {
-                photo.downloadThumbnail {
-                    DispatchQueue.main.async {
-                        cell.activityIndicatorView.stopAnimating()
-                        cell.imageView.image = photo.thumbnail
+                
+                if let thumbnail = photo.thumbnail {
+                    cell.activityIndicatorView.stopAnimating()
+                    cell.imageView.image = thumbnail
+                } else {
+                    photo.downloadThumbnail {
+                        DispatchQueue.main.async {
+                            cell.activityIndicatorView.stopAnimating()
+                            cell.imageView.image = photo.thumbnail
+                        }
                     }
                 }
             }
         }
-        
        
         return cell
     }
@@ -110,13 +111,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if selectedIndexPath == indexPath {
-            return collectionView.frame.size
-        } else {
-            return CGSize(width: 100, height: 100)
-        }
-    }
+    
     
     //let cellContentView = collectionView.cellForItemAtIndexPath(indexPath)?.contentView
     //let rect = cellContentView!.convertRect(cellContentView!.frame, toView: self.view)
@@ -125,6 +120,47 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
 }
 
+// TODO: -set layout for collection view
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    
+    
+    
+    func configureLayout () {
+        spacing = 5
+        let itemWidth = (screenWidth / numberOfCellsPerRow) - (spacing * 4 / 3)
+        let itemHeight = itemWidth
+        sectionInsets = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+        size = CGSize(width: itemWidth, height: itemHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if selectedIndexPath == indexPath {
+            return collectionView.frame.size
+        } else {
+            return size
+        }
+    }
+    
+
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return spacing
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return spacing
+    }
+    
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+}
 
 
 

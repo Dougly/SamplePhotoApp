@@ -27,6 +27,8 @@ class APIClient {
                             print("Could not serialize data into JSON\nERROR: \(error)\nRESPONSE: \(response)")
                         }
                     }
+                } else {
+                    completion([])
                 }
             }).resume()
         }

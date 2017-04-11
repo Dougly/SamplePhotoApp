@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,8 +22,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QJM-UO-ByT">
+                                <rect key="frame" x="0.0" y="20" width="375" height="66.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo Viewer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmG-yX-jgN">
+                                        <rect key="frame" x="-0.5" y="-0.5" width="375" height="66.5"/>
+                                        <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="27"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstItem="GmG-yX-jgN" firstAttribute="centerX" secondItem="QJM-UO-ByT" secondAttribute="centerX" id="Esc-To-7gw"/>
+                                    <constraint firstItem="GmG-yX-jgN" firstAttribute="centerY" secondItem="QJM-UO-ByT" secondAttribute="centerY" id="Niv-ut-aF7"/>
+                                    <constraint firstItem="GmG-yX-jgN" firstAttribute="height" secondItem="QJM-UO-ByT" secondAttribute="height" id="phH-oW-v1Y"/>
+                                    <constraint firstItem="GmG-yX-jgN" firstAttribute="width" secondItem="QJM-UO-ByT" secondAttribute="width" id="vGa-e1-hxI"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yrc-Gf-DCr">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="86.5" width="375" height="580.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hcW-bQ-ntK">
                                     <size key="itemSize" width="50" height="50"/>
@@ -50,21 +69,26 @@
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="0.41226438492063489" green="0.41226438492063489" blue="0.41226438492063489" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="yrc-Gf-DCr" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="CtJ-Xl-uDg"/>
+                            <constraint firstItem="QJM-UO-ByT" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="Bzy-EQ-Mju"/>
                             <constraint firstItem="6rg-6e-s0X" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Fnh-Wz-uMu"/>
-                            <constraint firstItem="yrc-Gf-DCr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Fwk-ou-3JQ"/>
                             <constraint firstItem="yrc-Gf-DCr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Mc0-87-xwI"/>
                             <constraint firstItem="yrc-Gf-DCr" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="N7Z-UL-yY9"/>
+                            <constraint firstItem="QJM-UO-ByT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TF2-DA-L0D"/>
+                            <constraint firstItem="QJM-UO-ByT" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="ThC-2o-PNz"/>
+                            <constraint firstItem="QJM-UO-ByT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Twc-iJ-Ijz"/>
+                            <constraint firstItem="yrc-Gf-DCr" firstAttribute="top" secondItem="QJM-UO-ByT" secondAttribute="bottom" id="YT8-Es-Wm8"/>
                             <constraint firstItem="6rg-6e-s0X" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="alA-pT-kxU"/>
                             <constraint firstItem="6rg-6e-s0X" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ba2-Z2-hqg"/>
                             <constraint firstItem="6rg-6e-s0X" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bwK-cc-Qww"/>
+                            <constraint firstItem="yrc-Gf-DCr" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="det-Eu-qyj"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicatorView" destination="6rg-6e-s0X" id="WvY-iX-kBf"/>
                         <outlet property="collectionView" destination="yrc-Gf-DCr" id="L7v-ck-X9P"/>
+                        <outlet property="headerView" destination="QJM-UO-ByT" id="AmT-G4-LKZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
