@@ -25,14 +25,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
-        refreshData()
+        getPhotoData()
         collectionView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(getPhotoData), for: .valueChanged)
     }
     
     
     
-    func refreshData() {
+    func getPhotoData() {
         dataStore.getJSON { success in
             if success {
                 self.dataStore.photos = []
@@ -44,14 +44,13 @@ class ViewController: UIViewController {
                     }
                 }
             } else {
+                if self.dataStore.photos.isEmpty {
+                    
+                }
                 self.activityIndicatorView.stopAnimating()
                 self.refreshControl.endRefreshing()
-                // TODO: - write new function
             }
-            
         }
-        
-        
     }
     
 
@@ -64,13 +63,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return 1
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataStore.photos.count
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageCollectionViewCell
-        
         let photo = dataStore.photos[indexPath.row]
         
         if let thumbnail = photo.thumbnail {
@@ -88,18 +89,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
 
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedPhotoIndex = indexPath.row
-        self.performSegue(withIdentifier: "presentDetailView", sender: self)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "presentDetailView" {
-            let destination = segue.destination as! DetailViewController
-            destination.photo = dataStore.photos[selectedPhotoIndex]
-        }
-    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y + 1) >= (scrollView.contentSize.height - scrollView.frame.size.height) {
@@ -112,6 +101,18 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
                     }
                 }
             }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedPhotoIndex = indexPath.row
+        self.performSegue(withIdentifier: "presentDetailView", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "presentDetailView" {
+            let destination = segue.destination as! DetailViewController
+            destination.photo = dataStore.photos[selectedPhotoIndex]
         }
     }
     

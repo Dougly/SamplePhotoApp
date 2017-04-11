@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SamplePhotoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="BYZ-38-t0r" customClass="ViewController" customModule="SamplePhotoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -99,7 +99,7 @@
         <!--Detail View Controller-->
         <scene sceneID="gOr-IA-kCt">
             <objects>
-                <viewController id="TSd-tM-z3c" customClass="DetailViewController" customModule="SamplePhotoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="TSd-tM-z3c" customClass="DetailViewController" customModule="SamplePhotoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0ue-b5-phc"/>
                         <viewControllerLayoutGuide type="bottom" id="Buk-0X-Qgt"/>
@@ -110,10 +110,10 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLu-tm-lsJ" customClass="DetailView" customModule="SamplePhotoApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="383" height="647"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CLu-tm-lsJ" firstAttribute="top" secondItem="0ue-b5-phc" secondAttribute="bottom" id="Asw-fe-wKB"/>
                             <constraint firstItem="CLu-tm-lsJ" firstAttribute="rightMargin" secondItem="PvK-T2-TYJ" secondAttribute="right" id="Bs7-gB-Pai"/>
@@ -127,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCC-oR-wFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="980" y="122"/>
+            <point key="canvasLocation" x="857" y="38"/>
         </scene>
     </scenes>
 </document>

@@ -32,18 +32,17 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sampe text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hmt-7q-yek">
-                    <rect key="frame" x="19" y="448.5" width="340" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="19" y="458.5" width="340" height="27"/>
+                    <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEx-95-KSF">
-                    <rect key="frame" x="340" y="0.0" width="38" height="38"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEx-95-KSF">
+                    <rect key="frame" x="324" y="5" width="49" height="49"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="eEx-95-KSF" secondAttribute="height" multiplier="1:1" id="LCh-Y2-ExG"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="30"/>
-                    <state key="normal" title="x">
+                    <state key="normal" image="close_image">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
@@ -55,12 +54,12 @@
             <constraints>
                 <constraint firstItem="JSG-5T-2uI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="08b-Qa-ea5"/>
                 <constraint firstItem="Hmt-7q-yek" firstAttribute="centerX" secondItem="JSG-5T-2uI" secondAttribute="centerX" id="6rG-KT-ivJ"/>
-                <constraint firstItem="eEx-95-KSF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LgC-87-2Up"/>
-                <constraint firstItem="Hmt-7q-yek" firstAttribute="top" secondItem="JSG-5T-2uI" secondAttribute="bottom" id="W1M-Hc-QC2"/>
+                <constraint firstItem="eEx-95-KSF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="LgC-87-2Up"/>
+                <constraint firstItem="Hmt-7q-yek" firstAttribute="top" secondItem="JSG-5T-2uI" secondAttribute="bottom" constant="10" id="W1M-Hc-QC2"/>
                 <constraint firstItem="Hmt-7q-yek" firstAttribute="width" secondItem="JSG-5T-2uI" secondAttribute="width" multiplier="0.9" id="bqo-ip-vKe"/>
-                <constraint firstItem="eEx-95-KSF" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="cUj-m2-pfq"/>
+                <constraint firstItem="eEx-95-KSF" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-5" id="cUj-m2-pfq"/>
                 <constraint firstItem="JSG-5T-2uI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dBB-H3-Tox"/>
-                <constraint firstItem="eEx-95-KSF" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.1" id="jg8-p0-18B"/>
+                <constraint firstItem="eEx-95-KSF" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.13" id="jg8-p0-18B"/>
                 <constraint firstItem="JSG-5T-2uI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="sT2-RU-81b"/>
                 <constraint firstItem="ONv-SZ-WQY" firstAttribute="centerX" secondItem="JSG-5T-2uI" secondAttribute="centerX" id="tLA-pR-MQy"/>
                 <constraint firstItem="ONv-SZ-WQY" firstAttribute="centerY" secondItem="JSG-5T-2uI" secondAttribute="centerY" id="wZH-BD-M0u"/>
@@ -70,4 +69,7 @@
             <point key="canvasLocation" x="35" y="43.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="close_image" width="48" height="48"/>
+    </resources>
 </document>

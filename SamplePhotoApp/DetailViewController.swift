@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         if let photo = photo {
             detailView.imageView.image = photo.thumbnail
-            detailView.detailLabel.text = photo.title
+            detailView.detailLabel.text = photo.title.capitalized
         }
         getImage()
         detailView.xButton.addTarget(self, action: #selector(xButtonTapped), for: .touchUpInside)
