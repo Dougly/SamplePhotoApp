@@ -38,7 +38,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEx-95-KSF">
-                    <rect key="frame" x="324" y="5" width="49" height="49"/>
+                    <rect key="frame" x="338" y="10" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="eEx-95-KSF" secondAttribute="height" multiplier="1:1" id="LCh-Y2-ExG"/>
                     </constraints>
@@ -54,12 +54,12 @@
             <constraints>
                 <constraint firstItem="JSG-5T-2uI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="08b-Qa-ea5"/>
                 <constraint firstItem="Hmt-7q-yek" firstAttribute="centerX" secondItem="JSG-5T-2uI" secondAttribute="centerX" id="6rG-KT-ivJ"/>
-                <constraint firstItem="eEx-95-KSF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="LgC-87-2Up"/>
+                <constraint firstItem="eEx-95-KSF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="LgC-87-2Up"/>
                 <constraint firstItem="Hmt-7q-yek" firstAttribute="top" secondItem="JSG-5T-2uI" secondAttribute="bottom" constant="10" id="W1M-Hc-QC2"/>
                 <constraint firstItem="Hmt-7q-yek" firstAttribute="width" secondItem="JSG-5T-2uI" secondAttribute="width" multiplier="0.9" id="bqo-ip-vKe"/>
-                <constraint firstItem="eEx-95-KSF" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-5" id="cUj-m2-pfq"/>
+                <constraint firstItem="eEx-95-KSF" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-10" id="cUj-m2-pfq"/>
                 <constraint firstItem="JSG-5T-2uI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dBB-H3-Tox"/>
-                <constraint firstItem="eEx-95-KSF" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.13" id="jg8-p0-18B"/>
+                <constraint firstItem="eEx-95-KSF" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.08" id="jg8-p0-18B"/>
                 <constraint firstItem="JSG-5T-2uI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="sT2-RU-81b"/>
                 <constraint firstItem="ONv-SZ-WQY" firstAttribute="centerX" secondItem="JSG-5T-2uI" secondAttribute="centerX" id="tLA-pR-MQy"/>
                 <constraint firstItem="ONv-SZ-WQY" firstAttribute="centerY" secondItem="JSG-5T-2uI" secondAttribute="centerY" id="wZH-BD-M0u"/>

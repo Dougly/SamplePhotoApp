@@ -112,7 +112,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "presentDetailView" {
             let destination = segue.destination as! DetailViewController
-            destination.photo = dataStore.photos[selectedPhotoIndex]
+            destination.photoIndex = selectedPhotoIndex
         }
     }
     
