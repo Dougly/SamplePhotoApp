@@ -31,12 +31,12 @@ class DataStore {
         }
     }
     
-    // Initializes 500 photos at a time depending on collection view scrolling
-    func appendNext500Photos(with completion: () -> Void) {
+    // Initializes 30 photos at a time depending on collection view scrolling
+    func appendNext30Photos(with completion: () -> Void) {
         if photos.count == 0 {
-            initializePhotos(formStartingIndex: photos.count, toEndingIndex: photos.count + 500)
-        } else if photos.count + 500 < serializedJSON.count {
-            initializePhotos(formStartingIndex: photos.count + 1, toEndingIndex: photos.count + 500)
+            initializePhotos(formStartingIndex: photos.count, toEndingIndex: photos.count + 29)
+        } else if photos.count + 29 < serializedJSON.count {
+            initializePhotos(formStartingIndex: photos.count + 1, toEndingIndex: photos.count + 29)
         } else if photos.count < serializedJSON.count {
             initializePhotos(formStartingIndex: photos.count + 1, toEndingIndex: serializedJSON.count - 1)
         }

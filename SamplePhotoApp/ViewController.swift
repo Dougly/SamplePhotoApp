@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var itemSize: CGSize!
     var numberOfCellsPerRow: CGFloat = 3
     var selectedPhotoIndex = -1
+    var hitBottomOfScrollView = false
     private let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -24,21 +25,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
-        
-        dataStore.getJSON() { success in
-            if success {
-                self.dataStore.appendNext500Photos {
-                    DispatchQueue.main.async {
-                        self.activityIndicatorView.stopAnimating()
-                        self.collectionView.reloadData()
-                    }
-                }
-            } else {
-                self.activityIndicatorView.stopAnimating()
-                // TODO: -show error image
-            }
-        }
-        
+        refreshData()
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
@@ -49,7 +36,7 @@ class ViewController: UIViewController {
         dataStore.getJSON { success in
             if success {
                 self.dataStore.photos = []
-                self.dataStore.appendNext500Photos {
+                self.dataStore.appendNext30Photos {
                     DispatchQueue.main.async {
                         self.activityIndicatorView.stopAnimating()
                         self.refreshControl.endRefreshing()
@@ -111,6 +98,20 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         if segue.identifier == "presentDetailView" {
             let destination = segue.destination as! DetailViewController
             destination.photo = dataStore.photos[selectedPhotoIndex]
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y + 1) >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+            if !hitBottomOfScrollView {
+                hitBottomOfScrollView = true
+                dataStore.appendNext30Photos {
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                        self.hitBottomOfScrollView = false
+                    }
+                }
+            }
         }
     }
     
