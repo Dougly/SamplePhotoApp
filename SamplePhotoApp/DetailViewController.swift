@@ -36,8 +36,6 @@ class DetailViewController: UIViewController {
             photo.downloadlargeImage {
                 DispatchQueue.main.async {
                     if photo.largeImage != nil {
-                        self.detailView.errorView.isHidden = true
-                        self.detailView.imageView.isHidden = false
                         self.detailView.imageView.image = photo.largeImage!
                     } else {
                         self.detailView.errorView.isHidden = false
@@ -48,6 +46,8 @@ class DetailViewController: UIViewController {
                 }
             }
         } else {
+            self.detailView.errorView.isHidden = true
+            self.detailView.imageView.isHidden = false
             detailView.imageView.image = photo.largeImage
             detailView.activityIndicator.stopAnimating()
         }

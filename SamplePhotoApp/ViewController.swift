@@ -94,14 +94,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let photo = dataStore.photos[indexPath.row]
         
         if let thumbnail = photo.thumbnail {
+            cell.errorView.isHidden = true
+            cell.imageView.isHidden = false
             cell.activityIndicatorView.stopAnimating()
             cell.imageView.image = thumbnail
         } else {
             photo.downloadThumbnail {
                 DispatchQueue.main.async {
                     if photo.thumbnail != nil {
-                        cell.errorView.isHidden = true
-                        cell.imageView.isHidden = false
                         cell.imageView.image = photo.thumbnail
                     } else {
                         cell.errorView.isHidden = false
