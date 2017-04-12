@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Creating a view using a .xib file
 class DetailView: UIView {
     
     @IBOutlet var contentView: UIView!
@@ -16,6 +17,7 @@ class DetailView: UIView {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var errorView: UIView!
+    
     
     
     override init(frame: CGRect) {

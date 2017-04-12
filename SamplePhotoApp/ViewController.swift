@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
     let dataStore = DataStore.sharedInstance
     var spacing: CGFloat!
     var sectionInsets: UIEdgeInsets!
@@ -23,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var errorView: UIView!
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
@@ -31,7 +33,7 @@ class ViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(getPhotoData), for: .valueChanged)
     }
     
-    
+    // Gets photodata when collection view is loaded or refreshed
     func getPhotoData() {
         errorView.isHidden = true
         dataStore.getJSON { success in
@@ -53,14 +55,14 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
+    
 }
 
 
 
-
+// Updates collection view when swipping to new images in detail view controller
 extension ViewController: GetPhotoDataDelegate {
-    
     
     func getNextBatch(with completion: @escaping (Bool) -> Void) {
         dataStore.appendNext30Photos {
@@ -71,24 +73,24 @@ extension ViewController: GetPhotoDataDelegate {
             }
         }
     }
+    
+    
 }
 
 
 
-
+// MARK: collectionView datasource and Delegate
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataStore.photos.count
     }
     
-    
-    
+    // Handles downloading thumbnail images for cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageCollectionViewCell
         let photo = dataStore.photos[indexPath.row]
@@ -115,7 +117,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
 
-    
+    // Handles creating more photoData when collection view reachs bottom of collection view
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y + 1) >= (scrollView.contentSize.height - scrollView.frame.size.height) {
             if !hitBottomOfScrollView {
@@ -130,6 +132,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         }
     }
     
+    // MARK: Segue
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedPhotoIndex = indexPath.row
         self.performSegue(withIdentifier: "presentDetailView", sender: self)
@@ -142,11 +145,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             destination.delegate = self
         }
     }
+    
+    
 }
 
 
 
-
+// MARK: collectionView Layout
 extension ViewController: UICollectionViewDelegateFlowLayout {
     
     func configureLayout () {
@@ -157,26 +162,23 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         itemSize = CGSize(width: itemWidth, height: itemHeight)
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return itemSize
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return spacing
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return spacing
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets
     }
 
+    
 }
 
 

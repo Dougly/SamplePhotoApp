@@ -19,6 +19,9 @@ class Photo {
     var thumbnail: UIImage?
     var largeImage: UIImage?
     
+    
+
+    // Init with item from JSON
     init(with dict: [String : Any]) {
         self.thumbnailURLString = dict["thumbnailUrl"] as! String
         self.imageURLString = dict["url"] as! String
@@ -27,21 +30,21 @@ class Photo {
         self.photoID = dict["id"] as! Int
     }
     
+    // Download thumbnail image from thumbnail URL
     func downloadThumbnail(with completion: @escaping () -> Void) {
         downloadImage(fromURL: thumbnailURLString) { (thumbnail) in
             self.thumbnail = thumbnail
             completion()
-            
         }
     }
     
+    // Download detail view Image from image URL
     func downloadlargeImage(with completion: @escaping () -> Void) {
         downloadImage(fromURL: imageURLString) { (largeImage) in
             self.largeImage = largeImage
             completion()
         }
     }
-    
     
     private func downloadImage(fromURL string: String, completion: @escaping (UIImage?) -> Void) {
         let url = URL(string: string)

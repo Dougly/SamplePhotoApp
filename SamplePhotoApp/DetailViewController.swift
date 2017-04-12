@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     var photoIndex: Int!
     @IBOutlet var detailView: DetailView!
     
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,16 +23,12 @@ class DetailViewController: UIViewController {
         setGestureRecognizers()
     }
     
-    
+    // Download image and Update UI to show selected (or swiped to) photo info
     func setImage(with index: Int) {
         let photo = dataStore.photos[index]
         detailView.imageView.image = photo.thumbnail
         detailView.detailLabel.text = photo.title
-        getImage(with: photo)
-    }
     
-    
-    func getImage(with photo: Photo) {
         if photo.largeImage == nil {
             photo.downloadlargeImage {
                 DispatchQueue.main.async {
@@ -53,7 +50,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    
+    // Logic for swiping left or right to view new photo in detail view
     func changeImage(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .right && photoIndex > 0 {
             self.photoIndex! -= 1
@@ -71,12 +68,12 @@ class DetailViewController: UIViewController {
         }
     }
     
-    
+    // Dismiss view controller when tapping X or swiping up/down
     func xButtonTapped() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
+    // Hide or shows text and X button when tapping screen
     func hideLabelAndX() {
         if detailView.xButton.alpha == 1 {
             UIView.animate(withDuration: 0.3) {
@@ -94,7 +91,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    
+    // Add swipe and tap gesture recognizers
     func setGestureRecognizers() {
         detailView.xButton.addTarget(self, action: #selector(xButtonTapped), for: .touchUpInside)
         

@@ -10,16 +10,17 @@ import Foundation
 
 class DataStore {
     
-    // set the data store as a singleton
+    // Create Singleton
     static let sharedInstance = DataStore()
     private init() {}
-    
     let sampleURL = "http://jsonplaceholder.typicode.com/photos"
     var serializedJSON: [[String : Any]] = []
     var photos: [Photo] = []
     
+    
+    
+    // Gets photo info and saves it to the datastore
     func getJSON(with completion: @escaping (Bool) -> Void) {
-        // calls and saves JSON data
         APIClient.getPhotoInfo(fromURL: sampleURL) { (JSON) in
             if JSON.count == 0 {
                 completion(false)
@@ -49,4 +50,6 @@ class DataStore {
             photos.append(photo)
         }
     }
+    
+    
 }

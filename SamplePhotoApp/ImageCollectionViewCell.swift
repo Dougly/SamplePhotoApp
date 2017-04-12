@@ -8,11 +8,13 @@
 
 import UIKit
 
+// Creating a custom UICollectionViewCell programmatically
 class ImageCollectionViewCell: UICollectionViewCell {
     
     var imageView = UIImageView()
     let errorView = UIImageView()
     let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    
     
     
     override init(frame: CGRect) {
