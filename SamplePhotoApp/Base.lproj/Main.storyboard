@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -69,6 +70,33 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PPA-p9-GLG">
+                                <rect key="frame" x="112" y="258" width="150" height="150"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Images Unavailable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7Ov-sr-jcK">
+                                        <rect key="frame" x="0.0" y="94" width="150" height="20"/>
+                                        <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning_image_black" translatesAutoresizingMaskIntoConstraints="NO" id="SKi-HI-fWr">
+                                        <rect key="frame" x="37.5" y="19" width="75" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="SKi-HI-fWr" secondAttribute="height" multiplier="1:1" id="mWz-hL-kxo"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PPA-p9-GLG" secondAttribute="height" multiplier="1:1" id="EXN-Hu-4U8"/>
+                                    <constraint firstItem="7Ov-sr-jcK" firstAttribute="centerX" secondItem="SKi-HI-fWr" secondAttribute="centerX" id="Ebo-D9-Mwx"/>
+                                    <constraint firstItem="SKi-HI-fWr" firstAttribute="centerY" secondItem="PPA-p9-GLG" secondAttribute="centerY" multiplier="0.75" id="H1l-jL-qLW"/>
+                                    <constraint firstItem="SKi-HI-fWr" firstAttribute="centerX" secondItem="PPA-p9-GLG" secondAttribute="centerX" id="RBg-3a-AZm"/>
+                                    <constraint firstItem="SKi-HI-fWr" firstAttribute="height" secondItem="PPA-p9-GLG" secondAttribute="height" multiplier="0.5" id="TJe-Rp-lgk"/>
+                                    <constraint firstItem="7Ov-sr-jcK" firstAttribute="top" secondItem="SKi-HI-fWr" secondAttribute="bottom" id="VGr-r0-fG2"/>
+                                    <constraint firstItem="7Ov-sr-jcK" firstAttribute="width" secondItem="PPA-p9-GLG" secondAttribute="width" id="ZDv-0b-O0s"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -76,25 +104,30 @@
                             <constraint firstItem="6rg-6e-s0X" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Fnh-Wz-uMu"/>
                             <constraint firstItem="yrc-Gf-DCr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Mc0-87-xwI"/>
                             <constraint firstItem="yrc-Gf-DCr" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="N7Z-UL-yY9"/>
+                            <constraint firstItem="PPA-p9-GLG" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="R5p-nY-hgz"/>
                             <constraint firstItem="QJM-UO-ByT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TF2-DA-L0D"/>
                             <constraint firstItem="QJM-UO-ByT" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="ThC-2o-PNz"/>
                             <constraint firstItem="QJM-UO-ByT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Twc-iJ-Ijz"/>
                             <constraint firstItem="yrc-Gf-DCr" firstAttribute="top" secondItem="QJM-UO-ByT" secondAttribute="bottom" id="YT8-Es-Wm8"/>
+                            <constraint firstItem="PPA-p9-GLG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YTN-Ex-DrY"/>
                             <constraint firstItem="6rg-6e-s0X" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="alA-pT-kxU"/>
                             <constraint firstItem="6rg-6e-s0X" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ba2-Z2-hqg"/>
                             <constraint firstItem="6rg-6e-s0X" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bwK-cc-Qww"/>
                             <constraint firstItem="yrc-Gf-DCr" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="det-Eu-qyj"/>
+                            <constraint firstItem="PPA-p9-GLG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mK1-d0-glQ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicatorView" destination="6rg-6e-s0X" id="WvY-iX-kBf"/>
                         <outlet property="collectionView" destination="yrc-Gf-DCr" id="L7v-ck-X9P"/>
+                        <outlet property="errorView" destination="PPA-p9-GLG" id="8n0-P0-Mfw"/>
                         <outlet property="headerView" destination="QJM-UO-ByT" id="AmT-G4-LKZ"/>
                         <segue destination="TSd-tM-z3c" kind="presentation" identifier="presentDetailView" id="Ygw-qW-eP0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="77.599999999999994" y="83.208395802098963"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="gOr-IA-kCt">
@@ -130,4 +163,7 @@
             <point key="canvasLocation" x="857" y="38"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="warning_image_black" width="48" height="48"/>
+    </resources>
 </document>

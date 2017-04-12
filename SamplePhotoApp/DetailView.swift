@@ -15,6 +15,7 @@ class DetailView: UIView {
     @IBOutlet weak var xButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var errorView: UIView!
     
     
     override init(frame: CGRect) {

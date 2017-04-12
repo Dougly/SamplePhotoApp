@@ -43,7 +43,7 @@ class Photo {
     }
     
     
-    private func downloadImage(fromURL string: String, completion: @escaping (UIImage) -> Void) {
+    private func downloadImage(fromURL string: String, completion: @escaping (UIImage?) -> Void) {
         let url = URL(string: string)
         let session = URLSession.shared
         
@@ -55,12 +55,9 @@ class Photo {
                         completion(image)
                     } else {
                         print("could not convert data to image")
-                        completion(#imageLiteral(resourceName: "broken_image"))
                     }
                 } else {
-                    if let error = error, let response = response {
-                        print("didn't recieve data \nERROR: \(error)\nRESPONSE: \(response)")
-                    }
+                    completion(nil)
                 }
             }).resume()
         }

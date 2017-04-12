@@ -17,10 +17,11 @@ class ViewController: UIViewController {
     var selectedPhotoIndex = -1
     var hitBottomOfScrollView = false
     fileprivate let refreshControl = UIRefreshControl()
-    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var errorView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,9 @@ class ViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(getPhotoData), for: .valueChanged)
     }
     
+    
     func getPhotoData() {
+        errorView.isHidden = true
         dataStore.getJSON { success in
             if success {
                 self.dataStore.photos = []
@@ -43,7 +46,7 @@ class ViewController: UIViewController {
                 }
             } else {
                 if self.dataStore.photos.isEmpty {
-                    // TODO: - put image error up
+                    self.errorView.isHidden = false
                 }
                 self.activityIndicatorView.stopAnimating()
                 self.refreshControl.endRefreshing()
@@ -96,8 +99,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         } else {
             photo.downloadThumbnail {
                 DispatchQueue.main.async {
+                    if photo.thumbnail != nil {
+                        cell.errorView.isHidden = true
+                        cell.imageView.isHidden = false
+                        cell.imageView.image = photo.thumbnail
+                    } else {
+                        cell.errorView.isHidden = false
+                        cell.imageView.isHidden = true
+                    }
                     cell.activityIndicatorView.stopAnimating()
-                    cell.imageView.image = photo.thumbnail
                 }
             }
         }

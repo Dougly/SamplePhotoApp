@@ -22,7 +22,6 @@ class DataStore {
         // calls and saves JSON data
         APIClient.getPhotoInfo(fromURL: sampleURL) { (JSON) in
             if JSON.count == 0 {
-                print("no internet connection")
                 completion(false)
             } else {
                 self.serializedJSON = JSON
@@ -33,7 +32,7 @@ class DataStore {
     
     // Initializes 30 photos at a time depending on collection view scrolling
     func appendNext30Photos(with completion: () -> Void) {
-        if photos.count == 0 {
+        if photos.count == 0 && !serializedJSON.isEmpty {
             initializePhotos(formStartingIndex: photos.count, toEndingIndex: photos.count + 29)
         } else if photos.count + 29 < serializedJSON.count {
             initializePhotos(formStartingIndex: photos.count + 1, toEndingIndex: photos.count + 30)

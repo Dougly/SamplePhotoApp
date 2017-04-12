@@ -35,19 +35,22 @@ class DetailViewController: UIViewController {
         if photo.largeImage == nil {
             photo.downloadlargeImage {
                 DispatchQueue.main.async {
-                    self.detailView.imageView.image = photo.largeImage!
+                    if photo.largeImage != nil {
+                        self.detailView.errorView.isHidden = true
+                        self.detailView.imageView.isHidden = false
+                        self.detailView.imageView.image = photo.largeImage!
+                    } else {
+                        self.detailView.errorView.isHidden = false
+                        self.detailView.imageView.isHidden = true
+                    }
                     self.detailView.activityIndicator.stopAnimating()
+
                 }
             }
         } else {
             detailView.imageView.image = photo.largeImage
             detailView.activityIndicator.stopAnimating()
         }
-    }
-    
-    
-    func xButtonTapped() {
-        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -66,6 +69,11 @@ class DetailViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    
+    func xButtonTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -107,4 +115,5 @@ class DetailViewController: UIViewController {
         detailView.addGestureRecognizer(rightSwipe)
         detailView.addGestureRecognizer(tapGR)
     }
+    
 }
