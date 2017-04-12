@@ -36,9 +36,9 @@ class DataStore {
         if photos.count == 0 && !serializedJSON.isEmpty {
             initializePhotos(formStartingIndex: photos.count, toEndingIndex: photos.count + 29)
         } else if photos.count + 29 < serializedJSON.count {
-            initializePhotos(formStartingIndex: photos.count + 1, toEndingIndex: photos.count + 30)
+            initializePhotos(formStartingIndex: photos.count, toEndingIndex: photos.count + 29)
         } else if photos.count < serializedJSON.count {
-            initializePhotos(formStartingIndex: photos.count + 1, toEndingIndex: serializedJSON.count - 1)
+            initializePhotos(formStartingIndex: photos.count, toEndingIndex: serializedJSON.count - 1)
         }
         completion()
     }

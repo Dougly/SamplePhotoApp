@@ -41,7 +41,6 @@ class DetailView: UIView {
         contentView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         contentView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         contentView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-
     }
 
     

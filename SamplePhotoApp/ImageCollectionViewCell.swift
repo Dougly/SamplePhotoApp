@@ -52,7 +52,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
         errorView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         errorView.image = #imageLiteral(resourceName: "warning_image_black")
         errorView.isHidden = true
-        
     }
     
 }
