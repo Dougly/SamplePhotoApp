@@ -33,7 +33,7 @@ class DataStore {
     
     // Initializes 30 photos at a time depending on collection view scrolling
     func appendNext30Photos(with completion: () -> Void) {
-        if photos.count == 0 && !serializedJSON.isEmpty {
+        if photos.count == 0 && !serializedJSON.isEmpty && photos.count > 29 {
             initializePhotos(formStartingIndex: photos.count, toEndingIndex: photos.count + 29)
         } else if photos.count + 29 < serializedJSON.count {
             initializePhotos(formStartingIndex: photos.count, toEndingIndex: photos.count + 29)

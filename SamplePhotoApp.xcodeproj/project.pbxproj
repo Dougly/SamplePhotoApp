@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		111DE0111EA7F6370086C55C /* PhotoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE0101EA7F6370086C55C /* PhotoTests.swift */; };
+		111DE0131EA7FD530086C55C /* DataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE0121EA7FD530086C55C /* DataStoreTests.swift */; };
 		1151047C1E9D40F9007C001B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151047B1E9D40F9007C001B /* DetailViewController.swift */; };
 		1151047E1E9D8E09007C001B /* UpdatePhotosDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151047D1E9D8E09007C001B /* UpdatePhotosDelegate.swift */; };
 		11C1F85E1E96AF8D00E10043 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1F85D1E96AF8D00E10043 /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		111DE0101EA7F6370086C55C /* PhotoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTests.swift; sourceTree = "<group>"; };
+		111DE0121EA7FD530086C55C /* DataStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreTests.swift; sourceTree = "<group>"; };
 		1151047B1E9D40F9007C001B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		1151047D1E9D8E09007C001B /* UpdatePhotosDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePhotosDelegate.swift; sourceTree = "<group>"; };
 		11C1F85A1E96AF8D00E10043 /* SamplePhotoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SamplePhotoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,7 @@
 			children = (
 				11C1F8721E96AF8D00E10043 /* SamplePhotoAppTests.swift */,
 				111DE0101EA7F6370086C55C /* PhotoTests.swift */,
+				111DE0121EA7FD530086C55C /* DataStoreTests.swift */,
 				11C1F8741E96AF8D00E10043 /* Info.plist */,
 			);
 			path = SamplePhotoAppTests;
@@ -279,6 +282,7 @@
 			files = (
 				111DE0111EA7F6370086C55C /* PhotoTests.swift in Sources */,
 				11C1F8731E96AF8D00E10043 /* SamplePhotoAppTests.swift in Sources */,
+				111DE0131EA7FD530086C55C /* DataStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
