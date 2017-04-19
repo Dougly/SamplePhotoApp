@@ -41,9 +41,6 @@ class PhotoTests: XCTestCase {
                                             "url": "http://placehold.it/600/f66b97",
                                             "thumbnailUrl": "http://placehold.it/150/f66b97"]]
 
-
-        
-   
     
     func testInit() {
         var photos: [Photo] = []
