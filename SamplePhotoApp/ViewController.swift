@@ -101,6 +101,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.activityIndicatorView.stopAnimating()
             cell.imageView.image = thumbnail
         } else {
+            cell.activityIndicatorView.startAnimating()
+            cell.imageView.image = nil
             photo.downloadThumbnail {
                 DispatchQueue.main.async {
                     if photo.thumbnail != nil {
