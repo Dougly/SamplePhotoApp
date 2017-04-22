@@ -16,6 +16,7 @@ class DataStore {
     let sampleURL = "http://jsonplaceholder.typicode.com/photos"
     var serializedJSON: [[String : Any]] = []
     var photos: [Photo] = []
+    var albums: [Album] = []
     
     
     
@@ -47,6 +48,15 @@ class DataStore {
         for i in starting...ending {
             let photoInfo = serializedJSON[i]
             let photo = Photo(with: photoInfo)
+            
+            if photo.albumID > albums.count {
+                let album = Album(albumID: photo.albumID)
+                album.photos.append(photo)
+                albums.append(album)
+            } else {
+                albums[photo.albumID - 1].photos.append(photo)
+            }
+            
             photos.append(photo)
         }
     }

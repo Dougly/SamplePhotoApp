@@ -83,17 +83,27 @@ extension ViewController: GetPhotoDataDelegate {
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return dataStore.albums.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataStore.photos.count
+        return dataStore.albums[section].photos.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "sectionHeader", for: indexPath) as! AlbumCollectionViewHeader
+        
+        headerView.textLabel.text = "Album: \(dataStore.albums[indexPath.section].albumID)"
+        
+        return headerView
     }
     
     // Handles downloading thumbnail images for cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageCollectionViewCell
-        let photo = dataStore.photos[indexPath.row]
+        let photo = dataStore.albums[indexPath.section].photos[indexPath.row]
         
         if let thumbnail = photo.thumbnail {
             cell.errorView.isHidden = true
@@ -158,7 +168,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     
     func configureLayout () {
         spacing = 5
-        let itemWidth = (UIScreen.main.bounds.width / numberOfCellsPerRow) - (spacing * 4 / 3)
+        let itemWidth = (UIScreen.main.bounds.width / numberOfCellsPerRow) - (spacing * (numberOfCellsPerRow + 1) / numberOfCellsPerRow)
         let itemHeight = itemWidth
         sectionInsets = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
         itemSize = CGSize(width: itemWidth, height: itemHeight)
