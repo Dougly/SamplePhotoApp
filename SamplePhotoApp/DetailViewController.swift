@@ -13,19 +13,20 @@ class DetailViewController: UIViewController {
     let dataStore = DataStore.sharedInstance
     var delegate: GetPhotoDataDelegate!
     var photoIndex: Int!
+    var photoAlbumID: Int!
     @IBOutlet var detailView: DetailView!
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setImage(with: photoIndex)
+        setImage()
         setGestureRecognizers()
     }
     
     // Download image and Update UI to show selected (or swiped to) photo info
-    func setImage(with index: Int) {
-        let photo = dataStore.photos[index]
+    func setImage() {
+        let photo = dataStore.albums[photoAlbumID].photos[photoIndex]
         detailView.imageView.image = photo.thumbnail
         detailView.detailLabel.text = photo.title
     
@@ -54,15 +55,15 @@ class DetailViewController: UIViewController {
     func changeImage(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .right && photoIndex > 0 {
             self.photoIndex! -= 1
-            setImage(with: self.photoIndex!)
+            setImage()
         } else if sender.direction == .left && photoIndex < dataStore.photos.count - 1 {
             self.photoIndex! += 1
-            setImage(with: self.photoIndex!)
+            setImage()
         } else if sender.direction == .left && photoIndex < dataStore.serializedJSON.count - 1 {
             delegate.getNextBatch { success in
                 if success {
                     self.photoIndex! += 1
-                    self.setImage(with: self.photoIndex!)
+                    self.setImage()
                 }
             }
         }

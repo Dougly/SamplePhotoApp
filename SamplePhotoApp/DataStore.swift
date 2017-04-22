@@ -15,8 +15,15 @@ class DataStore {
     private init() {}
     let sampleURL = "http://jsonplaceholder.typicode.com/photos"
     var serializedJSON: [[String : Any]] = []
-    var photos: [Photo] = []
     var albums: [Album] = []
+    
+    var photoCount: Int {
+        var count = 0
+        for album in albums {
+            count += album.photos.count
+        }
+        return count
+    }
     
     
     
@@ -34,12 +41,12 @@ class DataStore {
     
     // Initializes 30 photos at a time depending on collection view scrolling
     func appendNext30Photos(with completion: () -> Void) {
-        if photos.count == 0 && !serializedJSON.isEmpty && photos.count > 29 {
-            initializePhotos(formStartingIndex: photos.count, toEndingIndex: photos.count + 29)
-        } else if photos.count + 29 < serializedJSON.count {
-            initializePhotos(formStartingIndex: photos.count, toEndingIndex: photos.count + 29)
-        } else if photos.count < serializedJSON.count {
-            initializePhotos(formStartingIndex: photos.count, toEndingIndex: serializedJSON.count - 1)
+        if photoCount == 0 && !serializedJSON.isEmpty && photoCount > 29 {
+            initializePhotos(formStartingIndex: photoCount, toEndingIndex: photoCount + 29)
+        } else if photoCount + 29 < serializedJSON.count {
+            initializePhotos(formStartingIndex: photoCount, toEndingIndex: photoCount + 29)
+        } else if photoCount < serializedJSON.count {
+            initializePhotos(formStartingIndex: photoCount, toEndingIndex: serializedJSON.count - 1)
         }
         completion()
     }
@@ -57,7 +64,6 @@ class DataStore {
                 albums[photo.albumID - 1].photos.append(photo)
             }
             
-            photos.append(photo)
         }
     }
     

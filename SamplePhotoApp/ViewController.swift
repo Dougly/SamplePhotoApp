@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var itemSize: CGSize!
     var numberOfCellsPerRow: CGFloat = 3
     var selectedPhotoIndex = -1
+    var selectedPhotoAlbumID = -1
     var hitBottomOfScrollView = false
     fileprivate let refreshControl = UIRefreshControl()
     @IBOutlet weak var collectionView: UICollectionView!
@@ -38,7 +39,7 @@ class ViewController: UIViewController {
         errorView.isHidden = true
         dataStore.getJSON { success in
             if success {
-                self.dataStore.photos = []
+                self.dataStore.albums = []
                 self.dataStore.appendNext30Photos {
                     DispatchQueue.main.async {
                         self.activityIndicatorView.stopAnimating()
@@ -47,7 +48,7 @@ class ViewController: UIViewController {
                     }
                 }
             } else {
-                if self.dataStore.photos.isEmpty {
+                if self.dataStore.albums.isEmpty {
                     self.errorView.isHidden = false
                 }
                 self.activityIndicatorView.stopAnimating()
@@ -147,6 +148,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     // MARK: Segue
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedPhotoIndex = indexPath.row
+        selectedPhotoAlbumID = indexPath.section
         self.performSegue(withIdentifier: "presentDetailView", sender: self)
     }
     
@@ -154,6 +156,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         if segue.identifier == "presentDetailView" {
             let destination = segue.destination as! DetailViewController
             destination.photoIndex = selectedPhotoIndex
+            destination.photoAlbumID = selectedPhotoAlbumID
             destination.delegate = self
         }
     }
