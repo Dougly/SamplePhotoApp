@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     var itemSize: CGSize!
     var numberOfCellsPerRow: CGFloat = 3
     var selectedPhotoIndex = -1
-    var selectedPhotoAlbumID = -1
+    var selectedAlbumIndex = -1
     var hitBottomOfScrollView = false
     fileprivate let refreshControl = UIRefreshControl()
     @IBOutlet weak var collectionView: UICollectionView!
@@ -148,15 +148,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     // MARK: Segue
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedPhotoIndex = indexPath.row
-        selectedPhotoAlbumID = indexPath.section
+        selectedAlbumIndex = indexPath.section
         self.performSegue(withIdentifier: "presentDetailView", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "presentDetailView" {
             let destination = segue.destination as! DetailViewController
+            destination.albumIndex = selectedAlbumIndex
             destination.photoIndex = selectedPhotoIndex
-            destination.photoAlbumID = selectedPhotoAlbumID
             destination.delegate = self
         }
     }

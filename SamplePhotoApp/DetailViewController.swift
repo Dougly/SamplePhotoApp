@@ -12,8 +12,8 @@ class DetailViewController: UIViewController {
     
     let dataStore = DataStore.sharedInstance
     var delegate: GetPhotoDataDelegate!
-    var photoIndex: Int!
-    var photoAlbumID: Int!
+    var albumIndex = 0
+    var photoIndex = 0
     @IBOutlet var detailView: DetailView!
     
     
@@ -26,7 +26,7 @@ class DetailViewController: UIViewController {
     
     // Download image and Update UI to show selected (or swiped to) photo info
     func setImage() {
-        let photo = dataStore.albums[photoAlbumID].photos[photoIndex]
+        let photo = dataStore.albums[albumIndex].photos[photoIndex]
         detailView.imageView.image = photo.thumbnail
         detailView.detailLabel.text = photo.title
     
@@ -53,17 +53,34 @@ class DetailViewController: UIViewController {
     
     // Logic for swiping left or right to view new photo in detail view
     func changeImage(_ sender: UISwipeGestureRecognizer) {
-        if sender.direction == .right && photoIndex > 0 {
-            self.photoIndex! -= 1
-            setImage()
-        } else if sender.direction == .left && photoIndex < dataStore.photos.count - 1 {
-            self.photoIndex! += 1
-            setImage()
-        } else if sender.direction == .left && photoIndex < dataStore.serializedJSON.count - 1 {
-            delegate.getNextBatch { success in
-                if success {
-                    self.photoIndex! += 1
-                    self.setImage()
+        
+        let photo = dataStore.albums[albumIndex].photos[photoIndex]
+        
+        if sender.direction == .right {
+            if photoIndex == 0 && albumIndex > 0 {
+                albumIndex -= 1
+                photoIndex = dataStore.albums[albumIndex].photos.count - 1
+                setImage()
+            } else if photoIndex != 0 {
+                photoIndex -= 1
+                setImage()
+            }
+        }
+        
+        if sender.direction == .left {
+            if photoIndex == dataStore.albums[albumIndex].photos.count - 1 && photo.photoID < dataStore.photoCount {
+                photoIndex = 0
+                albumIndex += 1
+                setImage()
+            } else if photoIndex < dataStore.albums[albumIndex].photos.count - 1 {
+                photoIndex += 1
+                setImage()
+            } else if photoIndex < dataStore.serializedJSON.count - 1 {
+                delegate.getNextBatch { success in
+                    if success {
+                        self.photoIndex += 1
+                        self.setImage()
+                    }
                 }
             }
         }
