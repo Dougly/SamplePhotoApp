@@ -75,7 +75,7 @@ class DetailViewController: UIViewController {
             } else if photoIndex < dataStore.albums[albumIndex].photos.count - 1 {
                 photoIndex += 1
                 setImage()
-            } else if photoIndex < dataStore.serializedJSON.count - 1 {
+            } else if photo.photoID < dataStore.serializedJSON.count - 1 {
                 delegate.getNextBatch { success in
                     if success {
                         self.photoIndex += 1
